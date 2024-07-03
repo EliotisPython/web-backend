@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justificación</title>
+    <link rel="stylesheet" href="registrodise.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .alert {
+            margin-top: 20px;
+            color: red;
+        }
+
+        .form-group {
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        select {
+            padding: 5px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .form-group {
+            display: inline-block;
+            width: 48%;
+            margin-right: 2%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/usuariosinicio">Inicio</a></li>
+                <li><a href="/uretiro">Retirarse Del curso</a></li>
+                <li><a href="/justificacion">Justificaciones</a></li>
+                <li><a href="/ulibros">Libros</a></li>
+                <li><a href="/uhorario">Horario</a></li>
+                <li><a href="/">Salir</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Justificación</h1>
+        {% if mensaje %}
+        <div class="alert alert-danger" role="alert">
+            {{ mensaje }}
+        </div>
+        {% endif %}
+        <form class="form-control" action="{{ url_for('acceso_justificacion') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Correo</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="txtCorreo">
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group">
+                <label for="pretexto">Pretexto por la ausencia</label>
+                <textarea class="form-control" id="pretexto" rows="3" name="txtPretexto"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="archivo">Adjuntar archivo (PNG):</label>
+                <input type="file" id="archivo" name="archivo" accept="image/png">
+            </div>
+            <div class="form-group">
+                <label for="curso">Seleccionar curso:</label>
+                <select class="form-control" id="curso" name="curso">
+                    <option value="TI">TI</option>
+                    <option value="CALCULO">Cálculo</option>
+                    <option value="FISICA">Fisica</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+    </div>
+</body>
+</html>

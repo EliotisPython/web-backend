@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros</title>
+    <link rel="stylesheet" href="registrodise.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .pdf-list {
+            margin-top: 20px;
+        }
+
+        .pdf-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .pdf-list ul li {
+            margin: 10px 0;
+        }
+
+        .pdf-list a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/usuariosinicio">Inicio</a></li>
+                <li><a href="/uretiro">Retirarse Del curso</a></li>
+                <li><a href="/justificacion">Justificaciónes</a></li>
+                <li><a href="/ulibros">Libros</a></li>
+                <li><a href="/uhorario">Horario</a></li>
+                <li><a href="/">Salir</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section id="libros">
+        <div class="container">
+            <h2>Libros Disponibles</h2>
+            <div class="pdf-list">
+                <ul>
+                    {% for pdf in pdf_files %}
+                    <li><a href="{{ url_for('static', filename='uploads/' ~ pdf) }}" download>{{ pdf }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

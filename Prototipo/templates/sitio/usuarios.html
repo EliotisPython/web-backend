@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio De Usuario</title>
+    <link rel="stylesheet" href="registrodise.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .novedades {
+            margin-top: 20px;
+        }
+
+        .novedades img {
+            width: 300px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/usuariosinicio">Inicio</a></li>
+                <li><a href="/uretiro">Retirarse Del curso</a></li>
+                <li><a href="/justificacion">Justificaciónes</a></li>
+                <li><a href="/ulibros">Libros</a></li>
+                <li><a href="/uhorario">Horario</a></li>
+                <li><a href="/">Salir</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h2>Imágenes Publicadas</h2>
+        <div class="novedades">
+            <ul>
+                {% for file, description in files %}
+                    <li>
+                        <img src="{{ url_for('uploaded_file', filename=file) }}" alt="{{ file }}">
+                        <p>{{ description }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

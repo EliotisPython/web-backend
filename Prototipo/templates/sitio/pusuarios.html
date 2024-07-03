@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar Novedades</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='registrodise.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .novedades {
+            margin-top: 20px;
+        }
+
+        .novedades img {
+            width: 300px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/publicaciones">Publicaciones</a></li>
+                <li><a href="/pcorreo">Correo</a></li>
+                <li><a href="/phorario">Horario</a></li>
+                <li><a href="/libros">Libros</a></li>
+                <li><a href="/editar">Ver lista de alumnos</a></li>
+                <li><a href="/pnotas">Notas De alumnos</a></li>
+                <li><a href="/">Salir</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h2>Subir Novedades</h2>
+        <form action="{{ url_for('publi') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="text" name="description" placeholder="Descripción de la imagen">
+            <input type="submit" value="Subir">
+        </form>
+        <div class="novedades">
+            <h2>Imágenes Subidas</h2>
+            <ul>
+                {% for file, description in files %}
+                    <li>
+                        <img src="{{ url_for('uploaded_file', filename=file) }}" alt="{{ file }}">
+                        <p>{{ description }}</p>
+                        <form action="{{ url_for('delete_file', filename=file) }}" method="post" style="display: inline;">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

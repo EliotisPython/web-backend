@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario</title>
+    <link rel="stylesheet" href="registrodise.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container-horario {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pretexto-container,
+        .estado-entrega,
+        .estado-verificacion,
+        .ultima-modificacion,
+        .comentarios-justificacion {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        .archivo-adjunto img {
+            max-width: 100%; /* Limitar el ancho de la imagen al 100% del contenedor */
+            height: auto; /* Permitir que la altura se ajuste automáticamente */
+            display: block; /* Mostrar la imagen como un bloque para evitar espacios adicionales */
+            margin: 10px auto; /* Centrar la imagen horizontalmente con un margen superior e inferior */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/usuariosinicio">Inicio</a></li>
+                <li><a href="/uretiro">Retirarse Del curso</a></li>
+                <li><a href="/justificacion">Justificaciónes</a></li>
+                <li><a href="/ulibros">Libros</a></li>
+                <li><a href="/uhorario">Horario</a></li>
+                <li><a href="/">Salir</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container-horario">
+        <h1>Horario</h1>
+        <h2>Del profesor:</h2>
+        <p>{{ textoProfesor }}</p>
+        {% if archivo_subido %}
+        <div class="archivo-adjunto">
+            <img src="{{ url_for('uploaded_horario_file', filename=archivo_subido) }}" alt="Archivo Adjunto">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

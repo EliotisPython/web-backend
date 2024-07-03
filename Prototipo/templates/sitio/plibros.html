@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros</title>
+    <link rel="stylesheet" href="registrodise.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .pdf-list {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .pdf-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .pdf-item:last-child {
+            border-bottom: none;
+        }
+
+        .pdf-item button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pdf-item button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/publicaciones">Publicaciones</a></li>
+                <li><a href="/pcorreo">Correo</a></li>
+                <li><a href="/phorario">Horario</a></li>
+                <li><a href="/libros">Libros</a></li>
+                <li><a href="/editar">Ver lista de alumnos</a></li>
+                <li><a href="/pnotas">Notas De alumnos</a></li>
+                <li><a href="/">Salir</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section id="libros">
+        <div class="container">
+            <h2>Libros</h2>
+            <form action="{{ url_for('upload_pdf') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="pdf_file" accept="application/pdf" required>
+                <input type="submit" value="Subir PDF">
+            </form>
+
+            <div class="pdf-list">
+                <h3>Lista de PDFs subidos:</h3>
+                {% for pdf in pdf_files %}
+                <div class="pdf-item">
+                    <span>{{ pdf }}</span>
+                    <form action="{{ url_for('delete_pdf', filename=pdf) }}" method="post" style="display:inline;">
+                        <button type="submit">Eliminar libro</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

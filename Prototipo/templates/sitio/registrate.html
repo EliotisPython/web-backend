@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regístrate</title>
+    <link rel="stylesheet" href="registrodise.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .submit-button,
+        .forgot-password-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .submit-button:hover,
+        .forgot-password-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .forgot-password-btn {
+            background-color: #ff4d4d;
+        }
+
+        .forgot-password-btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="#">Regístrate</a></li>
+                <li><a href="#">Asistencia</a></li>
+                <li><a href="#">Docente</a></li>
+                <li><a href="#">Justificación</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <form id="registrationForm" action="/sitio/registrate/guardar" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="txtNombre" class="form-label">Nombre y apellidos</label>
+                <input type="text" class="form-control" name="txtRegistroNombre" id="txtRegistroNombre" aria-describedby="helpId" placeholder="Escriba sus nombres">
+            </div>
+            <div class="mb-3">
+                <label for="txtDni" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" name="txtRegistroCorreo" id="txtRegistroCorreo" aria-describedby="helpId" placeholder="Escriba su correo electronico">
+            </div>
+            <div class="mb-3">
+                <label for="txtCorreo" class="form-label">Contraseña</label>
+                <input type="text" class="form-control" name="txtRegistroContraseña" id="txtRegistroContraseña" aria-describedby="helpId" placeholder="Escriba una contraseña">
+            </div>
+            <div class="mb-3">
+                <label for="txtDni" class="form-label">DNI</label>
+                <input type="text" class="form-control" name="txtRegistroDNI" id="txtRegistroDNI" placeholder="Escriba su DNI">
+            </div>
+            <div class="mb-3">
+                <label for="curso" class="form-label">Curso</label>
+                <select class="form-control" name="curso" id="curso">
+                    <option value="algoritmos">Algoritmos</option>
+                    <option value="ti">TI</option>
+                    <option value="calculo">Cálculo</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <!--SUBIR FOTO-->>
+                <label for="archivo" class="form-label">Subir archivo</label>
+                <input type="file" class="form-control" name="archivo" id="archivo" aria-describedby="helpId" accept="image/jpeg, image/png">
+            </div>
+            <div class="mb-3">
+
+</div>
+
+            <button type="submit" class="btn btn-primary" id="agregarBtn">Agregar</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('agregarBtn').addEventListener('click', function(event) {
+            // Evita que el formulario se envíe automáticamente
+            event.preventDefault();
+    
+            // Obtener los valores de los campos del formulario
+            var nombre = document.getElementById('txtRegistroNombre').value.trim();
+            var correo = document.getElementById('txtRegistroCorreo').value.trim();
+            var contraseña = document.getElementById('txtRegistroContraseña').value.trim();
+            var dni = document.getElementById('txtRegistroDNI').value.trim();
+    
+            // Verificar si todos los campos están llenos
+            if (nombre === '' || correo === '' || contraseña === '' || dni === '') {
+                alert('Por favor, complete todos los campos del formulario.');
+                return; // Detiene la ejecución del script si falta algún campo
+            }
+    
+            // Enviar el formulario si todos los campos están llenos
+            document.getElementById('registrationForm').submit();
+        });
+    </script>
+</body>
+</html>

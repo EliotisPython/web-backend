@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcar Asistencia</title>
+    <style>
+        /* Estilos para centrar el contenedor del botón */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ajusta la altura según tu preferencia */
+        }
+        .bottom-button {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!--el h1 hace que se vea la letra grande de marcar asistencia-->>
+        <h1>Marcar asistencia</h1>
+        <button onclick="marcarAsistencia()">Marcar Asistencia</button>
+    </div>
+    <div class="bottom-button">
+        <button onclick="location.href='/usuariosinicio'">Ingrese a la página web de usuarios</button>
+    </div>
+    <script>
+        function marcarAsistencia() {
+            
+            
+            //@app.route('/registrar',methods=['POST']) que esta en el .py, llamamos a la funcion 
+            fetch('/registrar',{method:'POST'})
+                .then(response => response.text())
+                .then(data => {
+                    alert('reconocimiento facial completado')
+                });
+            // Aquí puedes agregar código JavaScript adicional para enviar una solicitud al servidor, guardar la asistencia en la base de datos, etc.
+        }
+        
+    </script>
+</body>
+</html>

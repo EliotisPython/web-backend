@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="registrodise.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f06, #4a90e2);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        input[type="email"],input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"],input[type="registrar_reconocimiento"] {
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover,input[type="registrar_reconocimiento"]:hover {
+            background-color: #218838;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-footer a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .form-footer a:hover {
+            color: #0056b3;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 25px;
+            margin: 10px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #007bff;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .links a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Iniciar Sesión</h1>
+        <form id="loginForm" action="acceso-login" method="post">
+            <!--codigo formulario, parte correo-->
+            <label for="exampleInputEmail1">Correo electronico:</label>
+            <input type="email" name="txtCorreo" placeholder="ingrese correo electronico" required>
+            
+            <!--codigo formulario, parte contraseña-->
+            <label for="exampleInputPassword">Contraseña:</label>
+            <input type="password" name="txtContraseña"placeholder="ingrese su contraseña" required>
+            
+            <!--codigo formulario, boton de enviar login-->
+            <input type="submit" value="Iniciar Sesión">
+            
+        </form>
+        
+        <div class="links">
+            <a href="/registrate">¿No tienes cuenta? Regístrate</a>
+            <a href="/recuperarcontra">¿Lo olvidaste? Restablecer contraseña</a>
+        </div>
+    </div>
+    
+    <script>
+        
+    </script>
+</body>
+</html>

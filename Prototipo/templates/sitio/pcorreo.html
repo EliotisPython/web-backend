@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .correo-container {
+            width: 70%; /* Ajusta el ancho según tus necesidades */
+        }
+
+        .retiro-container {
+            width: 30%; /* Ajusta el ancho según tus necesidades */
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-eliminar {
+            padding: 10px 20px;
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/publicaciones">Publicaciones</a></li>
+                <li><a href="/pcorreo">Correo</a></li>
+                <li><a href="/phorario">Horario</a></li>
+                <li><a href="/libros">Libros</a></li>
+                <li><a href="/editar">Ver lista de alumnos</a></li>
+                <li><a href="/pnotas">Notas De alumnos</a></li>
+                <li><a href="/">Salir</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- Contenido del correo -->
+    <div class="container">
+        <div class="justificacion-container">
+            <h2>Justificación de alumno</h2>
+            <p>Correo: {{ correo_justificacion }}</p>
+            <p>Pretexto: {{ pretexto_justificacion }}</p>
+            <p>Curso de la justificación: {{ curso_justificacion }}</p>
+            {% if archivo_justificacion %}
+                <img src="{{ url_for('uploaded_justificacion_file', filename=archivo_justificacion) }}" alt="Archivo adjunto">
+                <form action="{{ url_for('eliminar_justificacion') }}" method="post">
+                    <button type="submit" class="btn-eliminar">Eliminar Justificación</button>
+                </form>
+            {% endif %}
+        </div>
+        <div class="retiro-container">
+            <h2>Retiro de curso de alumnos</h2>
+            <p>Correo: {{ correo_retiro }}</p>
+            <p>Motivo del retiro: {{ motivo_retiro }}</p>
+            <p>Curso: {{ curso_retiro }}</p>
+            {% if archivo_retiro %}
+                <img src="{{ url_for('uploaded_retiro_file', filename=archivo_retiro) }}" alt="Archivo adjunto">
+                <form action="{{ url_for('eliminar_retiro') }}" method="post">
+                    <button type="submit" class="btn-eliminar">Eliminar Retiro</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

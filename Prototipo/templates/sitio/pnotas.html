@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas de los Alumnos</title>
+    <link rel="stylesheet" href="/static/css/registrodise.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        td {
+            text-align: center
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box
+        }
+
+        input[type="submit"], input[type="button"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer
+        }
+
+        input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #0056b3
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/publicaciones">Publicaciones</a></li>
+                <li><a href="/pcorreo">Correo</a></li>
+                <li><a href="/phorario">Horario</a></li>
+                <li><a href="/libros">Libros</a></li>
+                <li><a href="/editar">Ver lista de alumnos</a></li>
+                <li><a href="/pnotas">Notas De alumnos</a></li>
+                <li><a href="/">Salir</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h2>Lista de Alumnos y Notas</h2>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>PC1</th>
+                <th>PC2</th>
+                <th>PC3</th>
+                <th>PC4</th>
+                <th>Promedio</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            {% for alumno in alumnos %}
+            <tr>
+                <form action="{{ url_for('actualizar_notas', id=alumno.id) }}" method="post">
+                    <td>{{ alumno.nombre }}</td>
+                    <td>{{ alumno.correo }}</td>
+                    <td>
+                        <input type="number" name="PC1" value="{{ alumno.PC1 }}">
+                        <button type="submit" formaction="{{ url_for('eliminar_nota', id=alumno.id, pc='PC1') }}">Eliminar Nota</button>
+                    </td>
+                    <td>
+                        <input type="number" name="PC2" value="{{ alumno.PC2 }}">
+                        <button type="submit" formaction="{{ url_for('eliminar_nota', id=alumno.id, pc='PC2') }}">Eliminar Nota</button>
+                    </td>
+                    <td>
+                        <input type="number" name="PC3" value="{{ alumno.PC3 }}">
+                        <button type="submit" formaction="{{ url_for('eliminar_nota', id=alumno.id, pc='PC3') }}">Eliminar Nota</button>
+                    </td>
+                    <td>
+                        <input type="number" name="PC4" value="{{ alumno.PC4 }}">
+                        <button type="submit" formaction="{{ url_for('eliminar_nota', id=alumno.id, pc='PC4') }}">Eliminar Nota</button>
+                    </td>
+                    <td>{{ alumno.promedio }}</td>
+                    <td>{{ alumno.estado }}</td>
+                    <td>
+                        <input type="submit" value="Actualizar">
+                        <a href="{{ url_for('eliminar_alumno', id=alumno.id) }}" onclick="return confirm('¿Estás seguro de que deseas eliminar este alumno?');">Eliminar Alumno</a>
+                    </td>
+                </form>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="btn-container">
+            <a href="{{ url_for('mostrar_aprobados') }}">
+                <input type="button" value="Mostrar Aprobados">
+            </a>
+            <a href="{{ url_for('mostrar_desaprobados') }}">
+                <input type="button" value="Mostrar Desaprobados">
+            </a>
+        </div>
+    </div>
+</body>
+</html>

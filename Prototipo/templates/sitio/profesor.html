@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="registrodise.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ff4d4d;
+            overflow: hidden;
+        }
+
+        .navbar .logo img {
+            height: 50px;
+            width: auto;
+            padding: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input[type="email"] {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Se ha enviado un enlace de recuperación a tu correo electrónico.');
+            window.location.href = '/';
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/USMP.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="#">Regístrate</a></li>
+                <li><a href="#">Asistencia</a></li>
+                <li><a href="#">Docente</a></li>
+                <li><a href="#">Justificación</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <h1></h1>
+            <div class="cuadro">
+                <h2>EP 002</h2>
+                <p>Total de alumnos: 30</p>
+                <p>Porcentaje de asistencias: 15/04</p>
+                <button class="boton">Reporte</button>
+                <p>80%</p>
+            </div>
+            <div class="cuadro">
+                <h2>ET053</h2>
+                <p>Total de alumnos: 35</p>
+                <p>Porcentaje de asistencias: 30/04</p>
+                <button class="boton">Reporte</button>
+                <p>100%</p>
+            </div>
+            <div class="cuadro">
+                <h2>EP 001</h2>
+                <p>Total de alumnos: 38</p>
+                <p>Porcentaje de asistencias: 10/04</p>
+                <button class="boton">Reporte</button>
+                <p>75%</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
